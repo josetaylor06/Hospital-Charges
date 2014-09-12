@@ -1,0 +1,97 @@
+//Jose Taylor
+//Hospital Charges
+ 
+#include<cstdlib>
+#include<iostream>
+#include<iomanip>
+ 
+using namespace std;
+ 
+//Overload Function & Menu
+void getChoice(char &);
+double totalCharges(int, double,double,double);
+double totalCharges(double,double);
+ 
+ 
+int main()
+ 
+{ 
+//Declaring Main Functions
+  char selection;
+  int days;
+  double rate;
+  double med;
+  double services;
+ 
+//Format Output
+  cout<< fixed << showpoint << setprecision(2);
+  cout<< "Were You Admitted As \n";
+  cout<< "an (I) In-Patient or as an (O) Out-Patient \n";
+  getChoice(selection);
+ 
+//Switch Based on Selection Made  
+  switch (selection)
+  {
+    case 'I':
+    case 'i':
+  
+  do
+  {
+    cout<<"How Many Days Did You Stay in the Hospital? \n";
+    cin>> days;
+    cout<< "What is The Daily Rate? \n";
+    cin>> rate;
+    cout<< "What Was Your Medication Charges? \n";
+    cin>> med;
+    cout<< "What Was Your Charge for Services Performed? \n";
+    cin>>services;
+  }
+  
+  while(days<0 || rate<0 || med<0 || services<0);
+    cout<< totalCharges(days,rate,med,services) << endl;
+    break;
+ 
+    case 'O':
+    case 'o':
+  do
+  {
+    cout<<" What Was Your Charge for Services Performed?";
+    cin>> services;
+    cout<<" What Was Your Medication Charges?";
+    cin>> med;
+}
+ 
+//Validate Input
+while(services<0 || med<0);
+  cout<< totalCharges(services,med)<< endl;
+  break;
+  default :
+	cout<<"Invalid INPUT"<<endl;
+}
+system("pause");
+}
+//Menu Entry
+  void getChoice(char &letter)
+{
+    cout<< "Enter your choice (I or O):";
+    cin>> letter;
+ 
+  while (letter !='I' && letter !='i' &&
+  letter !='O' && letter !='o')
+{
+    cout << " Please enter I or O:";
+    cin >> letter;
+}
+}
+ 
+//Return Functions
+  double totalCharges( int days, double rate, double med, double services)
+{
+    return (days * rate)+ (med + services);
+}
+ 
+ 
+  double totalCharges(double med, double services)
+{
+    return med+services;
+}
